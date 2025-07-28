@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script>
+        const STATIC_URL = "{% static '' %}";
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - DR.PUL</title>
+    <link rel="stylesheet" href="productos.css">
+    <link rel="icon" href={% static "Images/Logo.png" %}/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/2. Servicios.css" %}>
+    <link rel="stylesheet" href={% static "css/header.css" %}>
+</head>
+<body>
+<header>
+    <!--Logo de encabezado-->
+    <div class="Logotipo">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'Images/logo2.png' %}" alt="logo DR.PUL">
+        </a>
+        <h3 class="eslogan">COMPROMETIDOS CON LA SALUD ANIMAL</h3>
+    </div>
+
+    <!--Menú hamburguesa responsivo-->
+    <button class="abrir" id="abrir-menu">☰</button>
+    
+    <!--Opciones de encabezado-->
+    <nav class="opciones" id="menu">
+        <button class="cerrar" id="cerrar-menu">✕</button>
+        <a href="{% url 'index' %}">INICIO</a>
+        <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
+        <a href="{% url 'servicios' %}">SERVICIOS</a>
+        <a href="{% url 'agendar' %}">AGENDAR CITA</a>
+        <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Perfil"></a>
+    </nav>
+</header>
+
+    <div class="servicios-grid">
+        {% for servicio in servicios %}
+        <div class="servicio-card">
+            <div class="servicio-imagen-container">
+                <img src="{{ servicio.imagen_cuadro.url }}" alt="{{ servicio.nombre }}" class="servicio-imagen">
+            </div>
+            <h3 class="servicio-titulo">{{ servicio.nombre }}</h3>
+            <div class="servicio-botones">
+                <!-- Botón de consulta siempre visible -->
+                <button onclick="mostrarDetalleServicio('{{ servicio.nombre|slugify }}')" class="btn-consulta">
+                    <i class="fas fa-info-circle"></i> Detalles
+                </button>
+                {% if servicio.mostrar_boton_agendar %}
+                <a href="{% url 'agendar' %}#formulario" class="btn-agendar">
+                    <i class="fas fa-calendar-alt"></i> Agendar
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="fondo-oscuro-servicios" class="fondo-oscuro"></div>
+
+    {% for servicio in servicios %}
+    <!--Ventana {{ servicio.nombre }}-->
+    <div class="detalles" id="{{ servicio.nombre|slugify }}D">
+        <button class="salir-garantizado" onclick="cerrarDetalleServicio()">×</button>
+        <h1><strong>Detalles del Servicio</strong></h1>
+        <h2><strong>{{ servicio.titulo_ventana }}</strong></h2>
+        <h3>{{ servicio.subtitulo_ventana }}</h3>
+        <img class="img2" src="{{ servicio.imagen_ventana.url }}" alt="{{ servicio.nombre }}">
+        <p>{{ servicio.contenido_ventana }}</p>
+        {% if servicio.mostrar_boton_agendar %}
+        <a href="{% url "agendar" %}#formulario">
+            <button class="agendar">Agendar</button>
+        </a>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <!--Pie de pagina-->    
+    <footer>
+        <div class="footer-container">
+            <!-- Información de contacto -->
+            <div class="footer-section">
+                <h3>DR.PUL - Clínica Veterinaria</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="material-icons">location_on</i>
+                        <p>Cl. 16 #915, Sogamoso, Boyacá</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons">phone</i>
+                        <p>+57 310 6890146</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons">email</i>
+                        <p>veterinariadr.pul@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Horario de atención -->
+            <div class="footer-section">
+                <h3>Horario de atención</h3>
+                <div class="schedule">
+                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 2:00 PM</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+            </div>
+            
+            <!-- Enlaces rápidos -->
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <div class="quick-links">
+                    <a href={% url "index" %}>Inicio</a>
+                    <a href="{% url "index" %}#conocenos">Conócenos</a>
+                    <a href={% url "servicios" %}>Servicios</a>
+                    <a href={% url "agendar" %}>Agendar cita</a>
+                    <a href={% url "login" %}>Iniciar sesión</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Derechos de autor -->
+        <div class="copyright">
+            <p>&copy; 2023 DR.PUL Veterinaria. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+    function mostrarDetalleServicio(servicioSlug) {
+        document.getElementById('fondo-oscuro-servicios').style.display = 'block';
+        document.getElementById(servicioSlug + 'D').style.display = 'block';
+    }
+
+    function cerrarDetalleServicio() {
+        document.getElementById('fondo-oscuro-servicios').style.display = 'none';
+        document.querySelectorAll('.detalles').forEach(detalle => {
+            detalle.style.display = 'none';
+        });
+    }
+
+    document.getElementById('fondo-oscuro-servicios').addEventListener('click', cerrarDetalleServicio);
+
+    // Menú hamburguesa
+    document.addEventListener('DOMContentLoaded', function() {
+        const abrirMenu = document.getElementById('abrir-menu');
+        const cerrarMenu = document.getElementById('cerrar-menu');
+        const menu = document.getElementById('menu');
+        
+        abrirMenu.addEventListener('click', function() {
+            menu.style.display = 'flex';
+        });
+        
+        cerrarMenu.addEventListener('click', function() {
+            menu.style.display = 'none';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('#menu a').forEach(enlace => {
+            enlace.addEventListener('click', function() {
+                menu.style.display = 'none';
+            });
+        });
+    });
+</script>
+
+    <!-- Scripts adicionales -->
+    <script src={% static "JavaScript/MenuHamburguesa.js" %}></script>
+    <script src={% static "JavaScript/js-BotonTipSemana.js" %}></script>
+    <script src={% static "JavaScript/js-BotonWhatsapp.js" %}></script>
+    <script src={% static "JavaScript/js-botonAyuda.js" %}></script>
+    <script src={% static "JavaScript/sienna.js" %}></script>
+    <script src={% static "JavaScript/custom.js" %}></script>
+</body>
+</html>
