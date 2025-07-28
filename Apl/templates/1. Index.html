@@ -7,8 +7,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinaria DR.PUL</title>
-    <link rel="icon" href="{% static 'Images/logo.png' %}"/>
+    <title>colegio cedhu</title>
+    <link rel="icon" href="{% static 'Images/logocedhu.avif' %}"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/1. Index1.css' %}">
     
@@ -19,13 +19,14 @@
 </head>
 
 <body>
-<header>
+    <header>
     <!--Logo de encabezado-->
     <div class="Logotipo">
         <a href="{% url 'index' %}">
-            <img src="{% static 'Images/logo2.png' %}" alt="logo DR.PUL">
+           <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Derechos Humanos">
+
         </a>
-        <h3 class="eslogan">COMPROMETIDOS CON LA SALUD ANIMAL</h3>
+        
     </div>
 
     <!--Menú hamburguesa responsivo-->
@@ -43,12 +44,10 @@
 </header>
     
     <!--Fondo inicial-->
-    <section class="bienvenida">
-        <h1></h1>
-        <p></p>
-        <!--Logo boton-->
-        <a href={% url "agendar" %}><img class="logo1" src={% static "Images/logop3.png" %}></a>
-    </section>
+    <section class="bienvenida" style="background-image: url('{% static "Images/fondocedhu.jpg" %}'); ">
+    <!--Logo boton-->
+    <a href={% url "agendar" %}><img class="logo1" src={% static "Images/logocedhu.avif" %}></a>
+</section>
 
 
     
