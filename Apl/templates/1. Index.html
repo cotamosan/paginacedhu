@@ -7,134 +7,128 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>colegio cedhu</title>
+    <title>Colegio CEDHU - Educación en Derechos Humanos</title>
     <link rel="icon" href="{% static 'Images/logocedhu.avif' %}"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/1. Index1.css' %}">
     
     <!-- Widget de Accesibilidad -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href={% static "css/custom.css" %}>
-    <link rel="stylesheet" href={% static "css/header.css" %}>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
 </head>
 
 <body>
     <header>
-    <!--Logo de encabezado-->
-    <div class="Logotipo">
-        <a href="{% url 'index' %}">
-           <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Derechos Humanos">
+        <!--Logo de encabezado-->
+        <div class="Logotipo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Educación en Derechos Humanos">
+            </a>
+        </div>
 
-        </a>
+        <!--Menú hamburguesa responsivo-->
+        <button class="abrir" id="abrir-menu">☰</button>
         
-    </div>
-
-    <!--Menú hamburguesa responsivo-->
-    <button class="abrir" id="abrir-menu">☰</button>
-    
-    <!--Opciones de encabezado-->
-    <nav class="opciones" id="menu">
-        <button class="cerrar" id="cerrar-menu">✕</button>
-        <a href="{% url 'index' %}">INICIO</a>
-        <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
-        <a href="{% url 'servicios' %}">SERVICIOS</a>
-        <a href="{% url 'agendar' %}">AGENDAR CITA</a>
-        <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Perfil"></a>
-    </nav>
-</header>
+        <!--Opciones de encabezado-->
+        <nav class="opciones" id="menu">
+            <button class="cerrar" id="cerrar-menu">✕</button>
+            <a href="{% url 'index' %}">INICIO</a>
+            <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
+            <a href="{% url 'servicios' %}">PROGRAMAS</a>
+            <a href="{% url 'agendar' %}">ADMISIONES</a>
+            <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Acceso Plataforma"></a>
+        </nav>
+    </header>
     
     <!--Fondo inicial-->
-    <section class="bienvenida" style="background-image: url('{% static "Images/fondocedhu.jpg" %}'); ">
-    <!--Logo boton-->
-    <a href={% url "agendar" %}><img class="logo1" src={% static "Images/logocedhu.avif" %}></a>
-</section>
+    <section class="bienvenida" style="background-image: url('{% static 'Images/fondocedhu.jpg' %}');">
+        <!--Logo boton-->
+        <a href="{% url 'agendar' %}"><img class="logo1" src="{% static 'Images/logocedhu.avif' %}" alt="Colegio CEDHU"></a>
+    </section>
 
-
-    
-<!--Seccion informativa; Bienvenidos y experiencia-->
-<section id="conocenos" class="conocenos">
-    <h1>Conócenos</h1>
-    <div class="conocenos2">
-        <div class="c1">
-            <div class="text-content">
-                <h2>Bienvenidos a nuestra veterinaria</h2>
-                <p>En Veterinaria Dr Pul, nuestro equipo de veterinarios está altamente capacitado para brindar el mejor cuidado a tu mascota. Contamos con formación especializada en:</p>
-                <ul>
-                    <li>Medicina Veterinaria General</li>
-                    <li>Cirugía Veterinaria</li>
-                    <li>Dermatología y Oncología Veterinaria</li>
-                    <li>Emergencias y Urgencias Veterinarias</li>
-                    <li>Comportamiento Animal</li>
-                </ul>
+    <!--Seccion informativa; Bienvenidos y experiencia-->
+    <section id="conocenos" class="conocenos">
+        <h1>Conócenos</h1>
+        <div class="conocenos2">
+            <div class="c1">
+                <div class="text-content">
+                    <h2>Bienvenidos al Colegio CEDHU</h2>
+                    <p>En el Colegio CEDHU, formamos ciudadanos comprometidos con los Derechos Humanos y la excelencia académica. Nuestro modelo educativo incluye:</p>
+                    <ul>
+                        <li>Educación preescolar, básica y media</li>
+                        <li>Enfoque en Derechos Humanos y valores</li>
+                        <li>Programas de formación ciudadana</li>
+                        <li>Educación inclusiva y diversa</li>
+                        <li>Tecnología educativa de vanguardia</li>
+                    </ul>
+                </div>
+                <img src="{% static 'Images/bienvenidos.jpg' %}" alt="Estudiantes CEDHU" class="section-img">
             </div>
-            <img src={% static "Images/bienvenidos.jpg" %} alt="Veterinaria" class="section-img">
-        </div>
-        <div class="c1">
-            <div class="text-content">
-                <h2>Experiencia</h2>
-                <p>Con más de 15 años de experiencia, en Veterinaria Animal. Hemos brindado atención a miles de mascotas, siempre con el compromiso de ofrecer un servicio profesional y amoroso.</p>
-                <p>Durante estos años, hemos trabajado con todo tipo de animales, desde perros y gatos, siempre buscando soluciones innovadoras y adaptadas a las necesidades de cada paciente.</p>
+            <div class="c1">
+                <div class="text-content">
+                    <h2>Nuestra Experiencia</h2>
+                    <p>Con más de 15 años de experiencia educativa, en Colegio CEDHU hemos formado a miles de estudiantes, siempre con el compromiso de ofrecer una educación de calidad basada en los Derechos Humanos.</p>
+                    <p>Nuestra institución se ha destacado por implementar modelos pedagógicos innovadores que fomentan el pensamiento crítico, la creatividad y el respeto por la diversidad.</p>
+                </div>
+                <img src="{% static 'Images/experiencia.jpg' %}" alt="Aula de clases" class="section-img">
             </div>
-            <img src={% static "Images/experiencia.jpg" %} alt="Experiencia" class="section-img">
         </div>
-    </div>
-</section>
+    </section>
 
-
-<!--Conocenos-->
-<section class="conocenos">
-    <div class="conocenos2">
-        <div class="c1">
-            <div class="text-content">
-                <h2>Visión</h2>
-                <p>Ser reconocidos como líderes en el cuidado y bienestar animal, brindando servicios veterinarios de alta calidad y estableciendo estándares excepcionales en la industria. Nos comprometemos a innovar constantemente en el campo de la salud animal, ofreciendo a nuestros pacientes tratamientos de vanguardia y utilizando tecnología de última generación. Buscamos ser una clínica referente en la comunidad, no solo por la calidad de nuestros servicios, sino también por el compromiso con el bienestar de las mascotas y la satisfacción de sus dueños.</p>
+    <!--Visión y Misión-->
+    <section class="conocenos">
+        <div class="conocenos2">
+            <div class="c1">
+                <div class="text-content">
+                    <h2>Visión</h2>
+                    <p>Ser reconocidos como líderes en educación en Derechos Humanos, formando ciudadanos globales comprometidos con la justicia social, la paz y el desarrollo sostenible. Aspiramos a ser un referente nacional en educación integral que combine excelencia académica con formación en valores, utilizando pedagogías innovadoras y tecnologías educativas de vanguardia.</p>
+                </div>
+                <img src="{% static 'Images/vision.jpg' %}" alt="Visión educativa" class="section-img">
             </div>
-            <img src={% static "Images/vision.jpg" %} alt="Visión" class="section-img">
-        </div>
-        <div class="c1">
-            <div class="text-content">
-                <h2>Misión</h2>
-                <p>En Veterinaria Dr. Pul, nos comprometemos a proporcionar atención veterinaria compasiva, ética y profesional para mejorar la salud y la calidad de vida de las mascotas. Nuestro equipo altamente capacitado se esfuerza por ofrecer servicios personalizados y de la más alta calidad, con un enfoque en la prevención, el diagnóstico y el tratamiento de enfermedades. Nos preocupamos por crear un ambiente acogedor para nuestros pacientes y sus dueños, en el cual la confianza, la educación continua y el cuidado del bienestar animal sean nuestra prioridad. Estamos dedicados a promover la salud preventiva, el bienestar animal y la satisfacción de nuestros clientes, a través de una atención profesional y personalizada en cada interacción.</p>
+            <div class="c1">
+                <div class="text-content">
+                    <h2>Misión</h2>
+                    <p>El Colegio CEDHU tiene como misión proporcionar una educación integral basada en los Derechos Humanos, que desarrolle las potencialidades de cada estudiante. Fomentamos el pensamiento crítico, la creatividad, la responsabilidad social y el respeto por la diversidad. Nuestro equipo docente altamente calificado se compromete con una educación personalizada que prepara a los estudiantes para los desafíos del siglo XXI.</p>
+                </div>
+                <img src="{% static 'Images/mision.jpg' %}" alt="Misión educativa" class="section-img">
             </div>
-            <img src={% static "Images/mision.jpg" %} alt="Misión" class="section-img">
         </div>
-    </div>
-</section>
+    </section>
 
-<!--Nuestro equipo-->
-<section class="equipo-nuevo">
-    <h2>Nuestro Equipo</h2>
-    <div class="tarjetas-equipo">
-        <div class="tarjeta">
-            <img src={% static "Images/ava1.jpg" %} alt="Dr. Juan Pérez">
-            <h3>Dr. Dimas Andres Pulido Diaz </h3>
-            <div class="especialidad">Universidad Nacional de Chile</div>
-            <p>Medico veterinario zootecniata</p>
-            <p>Especialista en cirugía de tejidos blandos en pequeñas especies.</p>
+    <!--Nuestro equipo-->
+    <section class="equipo-nuevo">
+        <h2>Nuestro Equipo Directivo</h2>
+        <div class="tarjetas-equipo">
+            <div class="tarjeta">
+                <img src="{% static 'Images/ava1.jpg' %}" alt="Rector">
+                <h3>Dr. Dimas Andres Pulido Diaz</h3>
+                <div class="especialidad">Doctor en Educación</div>
+                <p>Especialista en pedagogía de los Derechos Humanos</p>
+                <p>Magister en Gestión Educativa</p>
+            </div>
+            <div class="tarjeta">
+                <img src="{% static 'Images/ava2.jpg' %}" alt="Coordinadora Académica">
+                <h3>Milena Rodríguez Salamanca</h3>
+                <p>Licenciada en Educación</p>
+                <p>Magister en Currículo y Evaluación</p>
+                <p>Especialista en Educación Inclusiva</p>
+            </div>
         </div>
-        <div class="tarjeta">
-            <img src={% static "Images/ava2.jpg" %} alt="Dra. Laura Gómez">
-            <h3>Milena Rodríguez Salamanca </h3>
-            <p>Administradora de Empresas</p>
-            <p>Magister  en alta gerencia de mercadotecnia</p>
-            <p>Especialista en gerencia  de talento humano</p>
-        </div>
-    </div>
-</section>  
-
+    </section>  
 
     <!-- Galería Nuestro Trabajo -->
     <section class="seccion-trabajo">
         <div class="encabezado-trabajo">
-            <h2 class="titulo-trabajo">Nuestro Trabajo</h2>
-            <p class="descripcion-trabajo">Aquí puedes ver algunas imágenes de nuestro día a día y los servicios que ofrecemos en la clínica.</p>
+            <h2 class="titulo-trabajo">Vida Estudiantil</h2>
+            <p class="descripcion-trabajo">Conoce nuestro día a día y las actividades que realizamos en el Colegio CEDHU.</p>
         </div>
         
         <div class="galeria-trabajo">
             {% for imagen in imagenes_galeria %}
             <div class="item-trabajo">
                 <img src="{{ imagen.imagen.url }}" 
-                    alt="{{ imagen.titulo|default:'Nuestro trabajo en DR.PUL' }}"
+                    alt="{{ imagen.titulo|default:'Actividades CEDHU' }}"
                     class="imagen-trabajo">
                 {% if imagen.titulo %}
                 <div class="titulo-imagen">
@@ -144,12 +138,11 @@
             </div>
             {% empty %}
             <div class="mensaje-vacio">
-                <p>No hay imágenes disponibles en la galería.</p>
+                <p>Próximamente más imágenes de nuestras actividades.</p>
             </div>
             {% endfor %}
         </div>
     </section>
-
 
     <!--Mapa-->
     <section class="f-mapa">
@@ -162,7 +155,7 @@
         <div class="footer-container">
             <!-- Información de contacto -->
             <div class="footer-section">
-                <h3>DR.PUL - Clínica Veterinaria</h3>
+                <h3>Colegio CEDHU</h3>
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="material-icons">location_on</i>
@@ -174,18 +167,22 @@
                     </div>
                     <div class="contact-item">
                         <i class="material-icons">email</i>
-                        <p>veterinariadr.pul@gmail.com</p>
+                        <p>colegiocedhu@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons">school</i>
+                        <p>Institución Educativa</p>
                     </div>
                 </div>
             </div>
             
             <!-- Horario de atención -->
             <div class="footer-section">
-                <h3>Horario de atención</h3>
+                <h3>Horario Institucional</h3>
                 <div class="schedule">
-                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                    <p>Sábados: 9:00 AM - 2:00 PM</p>
-                    <p>Domingos: Cerrado</p>
+                    <p>Lunes a Viernes: 7:00 AM - 4:00 PM</p>
+                    <p>Jornada Académica: 7:00 AM - 2:00 PM</p>
+                    <p>Sábados: Actividades extracurriculares</p>
                 </div>
             </div>
             
@@ -193,22 +190,23 @@
             <div class="footer-section">
                 <h3>Enlaces rápidos</h3>
                 <div class="quick-links">
-                    <a href={% url "index" %}>Inicio</a>
+                    <a href="{% url 'index' %}">Inicio</a>
                     <a href="#conocenos">Conócenos</a>
-                    <a href={% url "servicios" %}>Servicios</a>
-                    <a href={% url "agendar" %}>Agendar cita</a>
-                    <a href={% url "login" %}>Iniciar sesión</a>
+                    <a href="{% url 'servicios' %}">Programas</a>
+                    <a href="{% url 'agendar' %}">Admisiones</a>
+                    <a href="{% url 'login' %}">Plataforma Virtual</a>
                 </div>
             </div>
         </div>
         
         <!-- Derechos de autor -->
         <div class="copyright">
-            <p>&copy; 2025 DR.PUL Veterinaria. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Colegio CEDHU. Todos los derechos reservados.</p>
+            <p>Institución Educativa reconocida por la Secretaría de Educación</p>
         </div>
     </footer>
 
-    <script src={% static "JavaScript/MenuHamburguesa.js" %}></script>
+    <script src="{% static 'JavaScript/MenuHamburguesa.js' %}"></script>
     
     <!-- Widget de Accesibilidad -->
     <script>
@@ -221,15 +219,11 @@
         };
     </script>
 
-    <!--Boton Tip de la semana-->
+    <!-- Scripts adicionales -->
     <script src="{% static 'JavaScript/js-BotonTipSemana.js' %}"></script>
-    
-    <!--Boton Whatsapp-->
-    <script src={% static "JavaScript/js-BotonWhatsapp.js" %}></script>
-    <!--Boton Ayuda-->
-    <script src={% static "JavaScript/js-botonAyuda.js" %}></script>
-
-    <script src={% static "JavaScript/sienna.js" %}></script>
-    <script src={% static "JavaScript/custom.js" %}></script>
+    <script src="{% static 'JavaScript/js-BotonWhatsapp.js' %}"></script>
+    <script src="{% static 'JavaScript/js-botonAyuda.js' %}"></script>
+    <script src="{% static 'JavaScript/sienna.js' %}"></script>
+    <script src="{% static 'JavaScript/custom.js' %}"></script>
 </body>
 </html>

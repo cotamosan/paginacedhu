@@ -3,18 +3,18 @@
 <html lang="es">
 <head>
     <script>
-        const STATIC_URL = "{% static %}";
+        const STATIC_URL = "{% static '' %}";
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - DR.PUL</title>
-    <link rel="icon" href={% static "Images/fondocedhu.jpg" %}/>
+    <title>Inicio - Colegio CEDHU</title>
+    <link rel="icon" href="{% static 'Images/fondocedhu.jpg' %}"/>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={%static "css/1. Index.css"%}>
+    <link rel="stylesheet" href="{% static 'css/1. Index.css' %}">
     
     <!-- Widget de Accesibilidad -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href={%static "css/custom.css"%}>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 </head>
 
 <body>
@@ -22,9 +22,9 @@
         <!--Logo de encabezado-->
         <div class="Logotipo">
             <a href="1. Index.html">
-                <img src={%static "Images/fondocedhu.jpg"%} alt="logo DR.PUL">
+                <img src="{% static 'Images/fondocedhu.jpg' %}" alt="logo Colegio CEDHU">
             </a>
-            <h3 class="eslogan"></h3>
+            <h3 class="eslogan">Formando líderes para el futuro</h3>
         </div>
 
         <!--Menú hamburguesa responsivo-->
@@ -35,9 +35,9 @@
             <button class="cerrar" id="cerrar-menu">✕</button>
             <a href="1. Index.html">INICIO</a>
             <a href="#conocenos">CONÓCENOS</a>
-            <a href="2. Servicios.html">SERVICIOS</a>
-            <a href="3. Agendar.html">AGENDAR CITA</a>
-            <a href="4. Login.html"><img class="perfil" src={%static "Images/perfil.png"%} alt="logo DR.PUL"></a>
+            <a href="2. Servicios.html">PROGRAMAS</a>
+            <a href="3. Agendar.html">ADMISIONES</a>
+            <a href="4. Login.html"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Acceso"></a>
         </nav>
     </header>
 
@@ -49,7 +49,7 @@
         <div class="footer-container">
             <!-- Información de contacto -->
             <div class="footer-section">
-                <h3>DR.PUL - Clínica Veterinaria</h3>
+                <h3>Colegio CEDHU</h3>
                 <div class="contact-info">
                     <div class="contact-item">
                         <i class="material-icons">location_on</i>
@@ -61,7 +61,11 @@
                     </div>
                     <div class="contact-item">
                         <i class="material-icons">email</i>
-                        <p>veterinariadr.pul@gmail.com</p>
+                        <p>colegiocedhu@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons">school</i>
+                        <p>Institución Educativa</p>
                     </div>
                 </div>
             </div>
@@ -70,9 +74,10 @@
             <div class="footer-section">
                 <h3>Horario de atención</h3>
                 <div class="schedule">
-                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                    <p>Sábados: 9:00 AM - 2:00 PM</p>
+                    <p>Lunes a Viernes: 7:00 AM - 4:00 PM</p>
+                    <p>Sábados: 8:00 AM - 12:00 PM</p>
                     <p>Domingos: Cerrado</p>
+                    <p>Jornada escolar: 7:00 AM - 2:00 PM</p>
                 </div>
             </div>
             
@@ -81,19 +86,22 @@
                 <h3>Enlaces rápidos</h3>
                 <div class="quick-links">
                     <a href="1. Index.html">Inicio</a>
-                    <a href="#conocenos">Conócenos</a>
-                    <a href="2. Servicios.html">Servicios</a>
-                    <a href="3. Agendar.html">Agendar cita</a>
-                    <a href="4. Login.html">Iniciar sesión</a>
+                    <a href="#conocenos">Nuestra Institución</a>
+                    <a href="2. Servicios.html">Programas Académicos</a>
+                    <a href="3. Agendar.html">Proceso de Admisión</a>
+                    <a href="4. Login.html">Plataforma Virtual</a>
+                    <a href="#">Contacto</a>
                 </div>
             </div>
         </div>
         
         <!-- Derechos de autor -->
         <div class="copyright">
-            <p>&copy; 2025 colegio cedhu. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Colegio CEDHU. Todos los derechos reservados.</p>
+            <p>Institución Educativa reconocida por la Secretaría de Educación</p>
         </div>
     </footer>
 
-{%block content%}
-{%endblock%}
+    <script src="{% static 'js/menu.js' %}"></script>
+</body>
+</html>
