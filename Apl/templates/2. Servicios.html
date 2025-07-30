@@ -2,178 +2,376 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programas educativos del Colegio CEDHU - Preescolar, Básica Primaria, Básica Secundaria y Media. Educación integral basada en Derechos Humanos.">
+    <meta name="keywords" content="programas educativos, preescolar, básica primaria, secundaria, media, CEDHU, derechos humanos">
+    <meta name="author" content="Colegio CEDHU">
+    
+    <!-- Title y Favicon -->
+    <title>Programas Educativos - Colegio CEDHU</title>
+    <link rel="icon" href="{% static 'Images/logocedhu.avif' %}" type="image/avif">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/2. Servicios.css' %}">
+    
+    <!-- JavaScript Variables -->
     <script>
         const STATIC_URL = "{% static '' %}";
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - DR.PUL</title>
-    <link rel="stylesheet" href="productos.css">
-    <link rel="icon" href={% static "Images/logocedhu.avif" %}/>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href={% static "css/2. Servicios.css" %}>
-    <link rel="stylesheet" href={% static "css/header.css" %}>
 </head>
+
 <body>
-<header>
-    <!--Logo de encabezado-->
-    <div class="Logotipo">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'Images/logocedhu.avif' %}" alt="logo DR.PUL">
-        </a>
-        <h3 class="eslogan">COMPROMETIDOS CON LA SALUD ANIMAL</h3>
+    <!-- ========== HEADER ========== -->
+    <header role="banner">
+        <!-- Logo Principal -->
+        <div class="Logotipo">
+            <a href="{% url 'index' %}" aria-label="Ir al inicio - Colegio CEDHU">
+                <img src="{% static 'Images/logocedhu.avif' %}" 
+                     alt="Logotipo de CEDHU - Educación en Derechos Humanos"
+                     width="200" height="60">
+            </a>
+        </div>
+
+        <!-- Menú Hamburguesa -->
+        <button class="abrir" id="abrir-menu" aria-label="Abrir menú de navegación">
+            ☰
+        </button>
+        
+        <!-- Navegación Principal -->
+        <nav class="opciones" id="menu" role="navigation" aria-label="Menú principal">
+            <button class="cerrar" id="cerrar-menu" aria-label="Cerrar menú">
+                ✕
+            </button>
+            
+            <a href="{% url 'index' %}">INICIO</a>
+            <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
+            <a href="{% url 'servicios' %}" aria-current="page">PROGRAMAS</a>
+            <a href="{% url 'agendar' %}">ADMISIONES</a>
+            <a href="{% url 'login' %}" aria-label="Acceder a la plataforma virtual">
+                <img class="perfil" 
+                     src="{% static 'Images/perfil.png' %}" 
+                     alt="Acceso Plataforma"
+                     width="35" height="35">
+            </a>
+        </nav>
+    </header>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+        <!-- Hero Section -->
+        <section class="programas-hero" aria-labelledby="titulo-programas">
+            <div class="hero-content">
+                <h1 id="titulo-programas">Nuestros Programas Educativos</h1>
+                <p class="hero-description">Descubre nuestra oferta educativa integral basada en los Derechos Humanos</p>
+            </div>
+        </section>
+
+        <!-- ========== GRID DE PROGRAMAS ========== -->
+        <section class="programas-section" aria-labelledby="titulo-programas-disponibles">
+            <h2 id="titulo-programas-disponibles" class="sr-only">Programas Disponibles</h2>
+            
+            <div class="servicios-grid" role="region" aria-label="Lista de programas educativos">
+                {% for servicio in servicios %}
+                <article class="servicio-card">
+                    <div class="servicio-imagen-container">
+                        <img src="{{ servicio.imagen_cuadro.url }}" 
+                             alt="Imagen del programa {{ servicio.nombre }}" 
+                             class="servicio-imagen"
+                             loading="lazy"
+                             width="300" height="200">
+                    </div>
+                    
+                    <div class="servicio-content">
+                        <h3 class="servicio-titulo">{{ servicio.nombre }}</h3>
+                        
+                        <div class="servicio-botones">
+                            <!-- Botón de detalles siempre visible -->
+                            <button onclick="mostrarDetalleServicio('{{ servicio.nombre|slugify }}')" 
+                                    class="btn-consulta"
+                                    aria-label="Ver detalles de {{ servicio.nombre }}">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> 
+                                Detalles
+                            </button>
+                            
+                            {% if servicio.mostrar_boton_agendar %}
+                            <a href="{% url 'agendar' %}#formulario" 
+                               class="btn-agendar"
+                               aria-label="Agendar admisión para {{ servicio.nombre }}">
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> 
+                                Admisión
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
+                {% empty %}
+                <div class="no-programas">
+                    <p>Próximamente más información sobre nuestros programas educativos.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== OVERLAY Y MODALES ========== -->
+    <!-- Fondo oscuro para modales -->
+    <div id="fondo-oscuro-servicios" 
+         class="fondo-oscuro" 
+         role="dialog" 
+         aria-hidden="true"
+         aria-label="Cerrar ventana de detalles">
     </div>
 
-    <!--Menú hamburguesa responsivo-->
-    <button class="abrir" id="abrir-menu">☰</button>
-    
-    <!--Opciones de encabezado-->
-    <nav class="opciones" id="menu">
-        <button class="cerrar" id="cerrar-menu">✕</button>
-        <a href="{% url 'index' %}">INICIO</a>
-        <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
-        <a href="{% url 'servicios' %}">SERVICIOS</a>
-        <a href="{% url 'agendar' %}">AGENDAR CITA</a>
-        <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Perfil"></a>
-    </nav>
-</header>
+    <!-- Modales de detalles de servicios -->
+    {% for servicio in servicios %}
+    <dialog class="detalles" 
+            id="{{ servicio.nombre|slugify }}D" 
+            aria-labelledby="titulo-{{ servicio.nombre|slugify }}"
+            aria-describedby="contenido-{{ servicio.nombre|slugify }}">
+        
+        <header class="detalles-header">
+            <button class="salir-garantizado" 
+                    onclick="cerrarDetalleServicio()"
+                    aria-label="Cerrar ventana de detalles">
+                ×
+            </button>
+            <h1 id="titulo-{{ servicio.nombre|slugify }}">
+                <strong>Detalles del Programa</strong>
+            </h1>
+        </header>
 
-    <div class="servicios-grid">
-        {% for servicio in servicios %}
-        <div class="servicio-card">
-            <div class="servicio-imagen-container">
-                <img src="{{ servicio.imagen_cuadro.url }}" alt="{{ servicio.nombre }}" class="servicio-imagen">
-            </div>
-            <h3 class="servicio-titulo">{{ servicio.nombre }}</h3>
-            <div class="servicio-botones">
-                <!-- Botón de consulta siempre visible -->
-                <button onclick="mostrarDetalleServicio('{{ servicio.nombre|slugify }}')" class="btn-consulta">
-                    <i class="fas fa-info-circle"></i> Detalles
-                </button>
-                {% if servicio.mostrar_boton_agendar %}
-                <a href="{% url 'agendar' %}#formulario" class="btn-agendar">
-                    <i class="fas fa-calendar-alt"></i> Agendar
-                </a>
-                {% endif %}
+        <div class="detalles-content">
+            <h2><strong>{{ servicio.titulo_ventana }}</strong></h2>
+            {% if servicio.subtitulo_ventana %}
+            <h3>{{ servicio.subtitulo_ventana }}</h3>
+            {% endif %}
+            
+            {% if servicio.imagen_ventana %}
+            <figure class="detalles-imagen">
+                <img class="img2" 
+                     src="{{ servicio.imagen_ventana.url }}" 
+                     alt="Imagen detallada de {{ servicio.nombre }}"
+                     loading="lazy">
+            </figure>
+            {% endif %}
+            
+            <div id="contenido-{{ servicio.nombre|slugify }}" class="detalles-descripcion">
+                <p>{{ servicio.contenido_ventana|linebreaks }}</p>
             </div>
         </div>
-        {% endfor %}
-    </div>
 
-    <div id="fondo-oscuro-servicios" class="fondo-oscuro"></div>
-
-    {% for servicio in servicios %}
-    <!--Ventana {{ servicio.nombre }}-->
-    <div class="detalles" id="{{ servicio.nombre|slugify }}D">
-        <button class="salir-garantizado" onclick="cerrarDetalleServicio()">×</button>
-        <h1><strong>Detalles del Servicio</strong></h1>
-        <h2><strong>{{ servicio.titulo_ventana }}</strong></h2>
-        <h3>{{ servicio.subtitulo_ventana }}</h3>
-        <img class="img2" src="{{ servicio.imagen_ventana.url }}" alt="{{ servicio.nombre }}">
-        <p>{{ servicio.contenido_ventana }}</p>
-        {% if servicio.mostrar_boton_agendar %}
-        <a href="{% url "agendar" %}#formulario">
-            <button class="agendar">Agendar</button>
-        </a>
-        {% endif %}
-    </div>
+        <footer class="detalles-footer">
+            {% if servicio.mostrar_boton_agendar %}
+            <a href="{% url 'agendar' %}#formulario" class="agendar-modal">
+                <button class="agendar" type="button">
+                    <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                    Solicitar Admisión
+                </button>
+            </a>
+            {% endif %}
+        </footer>
+    </dialog>
     {% endfor %}
 
-    <!--Pie de pagina-->    
-    <footer>
+    <!-- ========== FOOTER ========== -->
+    <footer role="contentinfo">
         <div class="footer-container">
-            <!-- Información de contacto -->
-            <div class="footer-section">
-                <h3>DR.PUL - Clínica Veterinaria</h3>
-                <div class="contact-info">
+            <!-- Información de Contacto -->
+            <section class="footer-section">
+                <h3>Colegio CEDHU</h3>
+                <address class="contact-info">
                     <div class="contact-item">
-                        <i class="material-icons">location_on</i>
+                        <i class="material-icons" aria-hidden="true">location_on</i>
                         <p>Cl. 16 #915, Sogamoso, Boyacá</p>
                     </div>
                     <div class="contact-item">
-                        <i class="material-icons">phone</i>
-                        <p>+57 310 6890146</p>
+                        <i class="material-icons" aria-hidden="true">phone</i>
+                        <p><a href="tel:+573106890146">+57 310 6890146</a></p>
                     </div>
                     <div class="contact-item">
-                        <i class="material-icons">email</i>
-                        <p>veterinariadr.pul@gmail.com</p>
+                        <i class="material-icons" aria-hidden="true">email</i>
+                        <p><a href="mailto:colegiocedhu@gmail.com">colegiocedhu@gmail.com</a></p>
                     </div>
-                </div>
-            </div>
+                    <div class="contact-item">
+                        <i class="material-icons" aria-hidden="true">school</i>
+                        <p>Institución Educativa</p>
+                    </div>
+                </address>
+            </section>
             
-            <!-- Horario de atención -->
-            <div class="footer-section">
-                <h3>Horario de atención</h3>
+            <!-- Horario Institucional -->
+            <section class="footer-section">
+                <h3>Horario Institucional</h3>
                 <div class="schedule">
-                    <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                    <p>Sábados: 9:00 AM - 2:00 PM</p>
-                    <p>Domingos: Cerrado</p>
+                    <p><strong>Lunes a Viernes:</strong> 7:00 AM - 4:00 PM</p>
+                    <p><strong>Jornada Académica:</strong> 7:00 AM - 5:00 PM</p>
+                    <p><strong>Atención Administrativa:</strong> 8:00 AM - 12:00 PM</p>
                 </div>
-            </div>
+            </section>
             
-            <!-- Enlaces rápidos -->
-            <div class="footer-section">
+            <!-- Enlaces Rápidos -->
+            <section class="footer-section">
                 <h3>Enlaces rápidos</h3>
-                <div class="quick-links">
-                    <a href={% url "index" %}>Inicio</a>
-                    <a href="{% url "index" %}#conocenos">Conócenos</a>
-                    <a href={% url "servicios" %}>Servicios</a>
-                    <a href={% url "agendar" %}>Agendar cita</a>
-                    <a href={% url "login" %}>Iniciar sesión</a>
-                </div>
-            </div>
+                <nav class="quick-links" aria-label="Enlaces rápidos del footer">
+                    <a href="{% url 'index' %}">Inicio</a>
+                    <a href="{% url 'index' %}#conocenos">Conócenos</a>
+                    <a href="{% url 'servicios' %}">Programas</a>
+                    <a href="{% url 'agendar' %}">Admisiones</a>
+                    <a href="{% url 'login' %}">Plataforma Virtual</a>
+                </nav>
+            </section>
         </div>
         
-        <!-- Derechos de autor -->
+        <!-- Derechos de Autor -->
         <div class="copyright">
-            <p>&copy; 2023 DR.PUL Veterinaria. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Colegio CEDHU. Todos los derechos reservados.</p>
+            <p>Institución Educativa reconocida por la Secretaría de Educación</p>
         </div>
     </footer>
 
+    <!-- ========== SCRIPTS ========== -->
     <script>
-    function mostrarDetalleServicio(servicioSlug) {
-        document.getElementById('fondo-oscuro-servicios').style.display = 'block';
-        document.getElementById(servicioSlug + 'D').style.display = 'block';
-    }
+        // ========== FUNCIONES DE MODALES ==========
+        /**
+         * Muestra el modal de detalles de un servicio específico
+         * @param {string} servicioSlug - Slug del servicio a mostrar
+         */
+        function mostrarDetalleServicio(servicioSlug) {
+            const fondo = document.getElementById('fondo-oscuro-servicios');
+            const modal = document.getElementById(servicioSlug + 'D');
+            
+            if (fondo && modal) {
+                fondo.style.display = 'block';
+                fondo.setAttribute('aria-hidden', 'false');
+                modal.style.display = 'block';
+                modal.setAttribute('aria-hidden', 'false');
+                
+                // Enfocar el botón de cerrar para accesibilidad
+                const btnCerrar = modal.querySelector('.salir-garantizado');
+                if (btnCerrar) {
+                    btnCerrar.focus();
+                }
+                
+                // Prevenir scroll del body
+                document.body.style.overflow = 'hidden';
+            }
+        }
 
-    function cerrarDetalleServicio() {
-        document.getElementById('fondo-oscuro-servicios').style.display = 'none';
-        document.querySelectorAll('.detalles').forEach(detalle => {
-            detalle.style.display = 'none';
-        });
-    }
+        /**
+         * Cierra todos los modales de detalles
+         */
+        function cerrarDetalleServicio() {
+            const fondo = document.getElementById('fondo-oscuro-servicios');
+            const modales = document.querySelectorAll('.detalles');
+            
+            if (fondo) {
+                fondo.style.display = 'none';
+                fondo.setAttribute('aria-hidden', 'true');
+            }
+            
+            modales.forEach(modal => {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            });
+            
+            // Restaurar scroll del body
+            document.body.style.overflow = 'auto';
+        }
 
-    document.getElementById('fondo-oscuro-servicios').addEventListener('click', cerrarDetalleServicio);
+        // ========== EVENT LISTENERS ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cerrar modal al hacer clic en el fondo
+            const fondoOscuro = document.getElementById('fondo-oscuro-servicios');
+            if (fondoOscuro) {
+                fondoOscuro.addEventListener('click', cerrarDetalleServicio);
+            }
 
-    // Menú hamburguesa
-    document.addEventListener('DOMContentLoaded', function() {
-        const abrirMenu = document.getElementById('abrir-menu');
-        const cerrarMenu = document.getElementById('cerrar-menu');
-        const menu = document.getElementById('menu');
-        
-        abrirMenu.addEventListener('click', function() {
-            menu.style.display = 'flex';
-        });
-        
-        cerrarMenu.addEventListener('click', function() {
-            menu.style.display = 'none';
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('#menu a').forEach(enlace => {
-            enlace.addEventListener('click', function() {
-                menu.style.display = 'none';
+            // Cerrar modal con la tecla ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    cerrarDetalleServicio();
+                }
+            });
+
+            // ========== MENÚ HAMBURGUESA ==========
+            const abrirMenu = document.getElementById('abrir-menu');
+            const cerrarMenu = document.getElementById('cerrar-menu');
+            const menu = document.getElementById('menu');
+            
+            if (abrirMenu && cerrarMenu && menu) {
+                abrirMenu.addEventListener('click', function() {
+                    menu.classList.add('active');
+                    menu.setAttribute('aria-hidden', 'false');
+                });
+                
+                cerrarMenu.addEventListener('click', function() {
+                    menu.classList.remove('active');
+                    menu.setAttribute('aria-hidden', 'true');
+                });
+                
+                // Cerrar menú al hacer clic en un enlace
+                document.querySelectorAll('#menu a').forEach(enlace => {
+                    enlace.addEventListener('click', function() {
+                        menu.classList.remove('active');
+                        menu.setAttribute('aria-hidden', 'true');
+                    });
+                });
+
+                // Cerrar menú con ESC
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menu.setAttribute('aria-hidden', 'true');
+                    }
+                });
+            }
+
+            // ========== ANIMACIONES EN SCROLL ==========
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observar las tarjetas de servicios
+            document.querySelectorAll('.servicio-card').forEach(card => {
+                observer.observe(card);
             });
         });
-    });
-</script>
+    </script>
 
-    <!-- Scripts adicionales -->
-    <script src={% static "JavaScript/MenuHamburguesa.js" %}></script>
-    <script src={% static "JavaScript/js-BotonTipSemana.js" %}></script>
-    <script src={% static "JavaScript/js-BotonWhatsapp.js" %}></script>
-    <script src={% static "JavaScript/js-botonAyuda.js" %}></script>
-    <script src={% static "JavaScript/sienna.js" %}></script>
-    <script src={% static "JavaScript/custom.js" %}></script>
+    <!-- Scripts Externos -->
+    <script src="{% static 'JavaScript/MenuHamburguesa.js' %}"></script>
+    <script src="{% static 'JavaScript/js-BotonTipSemana.js' %}"></script>
+    <script src="{% static 'JavaScript/js-BotonWhatsapp.js' %}"></script>
+    <script src="{% static 'JavaScript/js-botonAyuda.js' %}"></script>
+    <script src="{% static 'JavaScript/custom.js' %}"></script>
+    
+    <!-- Widget de Accesibilidad -->
+    <script>
+        window.siennaOptions = {
+            buttonColor: '#1e40af',
+            buttonIconColor: '#ffffff',
+            highlightColor: '#3a6ead',
+            menuBackgroundColor: '#ffffff',
+            menuTextColor: '#333333'
+        };
+    </script>
+    <script src="{% static 'JavaScript/sienna.js' %}"></script>
 </body>
 </html>

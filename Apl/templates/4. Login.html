@@ -17,27 +17,27 @@
 </head>
 
 <body >
-<header>
-    <!--Logo de encabezado-->
-    <div class="Logotipo">
-        <a href="{% url 'index' %}">
-            <img src="{% static 'Images/logocedhu.avif' %}" alt="logo DR.PUL">
-        </a>
-        <h3 class="eslogan">COMPROMETIDOS CON LA SALUD ANIMAL</h3>
-    </div>
+    <header>
+        <!--Logo de encabezado-->
+        <div class="Logotipo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Educación en Derechos Humanos">
+            </a>
+        </div>
 
-    <!--Menú hamburguesa responsivo-->
-    
-    
-    <!--Opciones de encabezado-->
-    <nav class="opciones" id="menu">
-        <a href="{% url 'index' %}">INICIO</a>
-        <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
-        <a href="{% url 'servicios' %}">SERVICIOS</a>
-        <a href="{% url 'agendar' %}">AGENDAR CITA</a>
-        <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Perfil"></a>
-    </nav>
-</header>
+        <!--Menú hamburguesa responsivo-->
+        <button class="abrir" id="abrir-menu">☰</button>
+        
+        <!--Opciones de encabezado-->
+        <nav class="opciones" id="menu">
+            <button class="cerrar" id="cerrar-menu">✕</button>
+            <a href="{% url 'index' %}">INICIO</a>
+            <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
+            <a href="{% url 'servicios' %}">PROGRAMAS</a>
+            <a href="{% url 'agendar' %}">ADMISIONES</a>
+            <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Acceso Plataforma"></a>
+        </nav>
+    </header>
     <div class="formulario">
         <h1>
             <div class="volver2">

@@ -2,248 +2,322 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colegio CEDHU - Educación integral basada en Derechos Humanos. Formamos ciudadanos comprometidos con la excelencia académica y valores humanos.">
+    <meta name="keywords" content="colegio, educación, derechos humanos, Sogamoso, Boyacá, educación integral">
+    <meta name="author" content="Colegio CEDHU">
+    
+    <!-- Title y Favicon -->
+    <title>Colegio CEDHU - Educación en Derechos Humanos</title>
+    <link rel="icon" href="{% static 'Images/logocedhu.avif' %}" type="image/avif">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/1. Index1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    
+    <!-- JavaScript Variables -->
     <script>
         const STATIC_URL = "{% static '' %}";
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colegio CEDHU - Educación en Derechos Humanos</title>
-    <link rel="icon" href="{% static 'Images/logocedhu.avif' %}"/>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/1. Index1.css' %}">
-    
-    <!-- Widget de Accesibilidad -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
 </head>
 
 <body>
-    <header>
-        <!--Logo de encabezado-->
+    <!-- ========== HEADER ========== -->
+    <header role="banner">
+        <!-- Logo Principal -->
         <div class="Logotipo">
-            <a href="{% url 'index' %}">
-                <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Educación en Derechos Humanos">
+            <a href="{% url 'index' %}" aria-label="Ir al inicio - Colegio CEDHU">
+                <img src="{% static 'Images/logocedhu.avif' %}" 
+                     alt="Logotipo de CEDHU - Educación en Derechos Humanos"
+                     width="200" height="60">
             </a>
         </div>
 
-        <!--Menú hamburguesa responsivo-->
-        <button class="abrir" id="abrir-menu">☰</button>
+        <!-- Menú Hamburguesa -->
+        <button class="abrir" id="abrir-menu" aria-label="Abrir menú de navegación">
+            ☰
+        </button>
         
-        <!--Opciones de encabezado-->
-        <nav class="opciones" id="menu">
-            <button class="cerrar" id="cerrar-menu">✕</button>
-            <a href="{% url 'index' %}">INICIO</a>
+        <!-- Navegación Principal -->
+        <nav class="opciones" id="menu" role="navigation" aria-label="Menú principal">
+            <button class="cerrar" id="cerrar-menu" aria-label="Cerrar menú">
+                ✕
+            </button>
+            
+            <a href="{% url 'index' %}" aria-current="page">INICIO</a>
             <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
             <a href="{% url 'servicios' %}">PROGRAMAS</a>
             <a href="{% url 'agendar' %}">ADMISIONES</a>
-            <a href="{% url 'login' %}"><img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Acceso Plataforma"></a>
+            <a href="{% url 'login' %}" aria-label="Acceder a la plataforma virtual">
+                <img class="perfil" 
+                     src="{% static 'Images/perfil.png' %}" 
+                     alt="Acceso Plataforma"
+                     width="35" height="35">
+            </a>
         </nav>
     </header>
-    
-    <!--Fondo inicial-->
-    <section class="bienvenida" style="background-image: url('{% static 'Images/fondocedhu.jpg' %}');">
-        <!--Logo boton-->
-        <a href="{% url 'agendar' %}"><img class="logo1" src="{% static 'Images/logocedhu.avif' %}" alt="Colegio CEDHU"></a>
-    </section>
 
-    <!--Seccion informativa; Bienvenidos y experiencia-->
-    <section id="conocenos" class="conocenos">
-        <h1>Conócenos</h1>
-        <div class="conocenos2">
-            <div class="c1">
-                <div class="text-content">
-                    <h2>Bienvenidos al Colegio CEDHU</h2>
-                    <p>En el Colegio CEDHU, formamos ciudadanos comprometidos con los Derechos Humanos y la excelencia académica. Nuestro modelo educativo incluye:</p>
-                    <ul>
-                        <li>Educación preescolar, básica y media</li>
-                        <li>Enfoque en Derechos Humanos y valores</li>
-                        <li>Programas de formación ciudadana</li>
-                        <li>Educación inclusiva y diversa</li>
-                        <li>Tecnología educativa de vanguardia</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="c1">
-                <div class="text-content">
-                    <h2>Nuestra Experiencia</h2>
-                    <p>Con más de 15 años de experiencia educativa, en Colegio CEDHU hemos formado a miles de estudiantes, siempre con el compromiso de ofrecer una educación de calidad basada en los Derechos Humanos.</p>
-                    <p>Nuestra institución se ha destacado por implementar modelos pedagógicos innovadores que fomentan el pensamiento crítico, la creatividad y el respeto por la diversidad.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- ========== MAIN CONTENT ========== -->
+    <main>
+        <!-- Sección Hero/Bienvenida -->
+        <section class="bienvenida" 
+                 style="background-image: url('{% static 'Images/fondocedhu.jpg' %}');"
+                 aria-label="Sección de bienvenida">
+            <a href="{% url 'agendar' %}" 
+               class="logo1-link"
+               aria-label="Agendar admisión - Colegio CEDHU">
+                <img class="logo1" 
+                     src="{% static 'Images/logocedhu.avif' %}" 
+                     alt="Colegio CEDHU - Haz clic para agendar"
+                     width="300" height="150">
+            </a>
+        </section>
 
-    <!--Visión y Misión-->
-    <section class="conocenos">
-        <div class="conocenos2">
-            <div class="c1">
-                <div class="text-content">
-                    <h2>Visión</h2>
-                    <p>Ser reconocidos como líderes en educación en Derechos Humanos, formando ciudadanos globales comprometidos con la justicia social, la paz y el desarrollo sostenible. Aspiramos a ser un referente nacional en educación integral que combine excelencia académica con formación en valores, utilizando pedagogías innovadoras y tecnologías educativas de vanguardia.</p>
-                </div>
-            </div>
-            <div class="c1">
-                <div class="text-content">
-                    <h2>Misión</h2>
-                    <p>El Colegio CEDHU tiene como misión proporcionar una educación integral basada en los Derechos Humanos, que desarrolle las potencialidades de cada estudiante. Fomentamos el pensamiento crítico, la creatividad, la responsabilidad social y el respeto por la diversidad. Nuestro equipo docente altamente calificado se compromete con una educación personalizada que prepara a los estudiantes para los desafíos del siglo XXI.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- ========== SECCIÓN CONÓCENOS ========== -->
+        <section id="conocenos" class="conocenos" aria-labelledby="titulo-conocenos">
+            <h1 id="titulo-conocenos">Conócenos</h1>
+            
+            <div class="conocenos2">
+                <!-- Bienvenida -->
+                <article class="c1">
+                    <div class="text-content">
+                        <h2>Bienvenidos al Colegio CEDHU</h2>
+                        <p>En el Colegio CEDHU, formamos ciudadanos comprometidos con los Derechos Humanos y la excelencia académica. Nuestro modelo educativo incluye:</p>
+                        <ul>
+                            <li>Educación preescolar, básica y media</li>
+                            <li>Enfoque en Derechos Humanos y valores</li>
+                            <li>Programas de formación ciudadana</li>
+                            <li>Educación inclusiva y diversa</li>
+                            <li>Tecnología educativa de vanguardia</li>
+                        </ul>
+                    </div>
+                </article>
 
-    <!-- Nuestro Equipo -->
-<section class="equipo-nuevo">
-    <div class="container">
-        <!-- Equipo Directivo -->
-        <div class="equipo-categoria">
-            <h2>Equipo Directivo</h2>
-            <div class="tarjetas-equipo">
-                <div class="tarjeta">
-                    <h3>Dr. Dimas Andres Pulido Diaz</h3>
-                    <div class="especialidad">Rector</div>
-                    <p>Doctor en Educación</p>
-                    <p>Especialista en pedagogía de los Derechos Humanos</p>
-                    <p>Magister en Gestión Educativa</p>
+                <!-- Experiencia -->
+                <article class="c1">
+                    <div class="text-content">
+                        <h2>Nuestra Experiencia</h2>
+                        <p>Con más de 15 años de experiencia educativa, en Colegio CEDHU hemos formado a miles de estudiantes, siempre con el compromiso de ofrecer una educación de calidad basada en los Derechos Humanos.</p>
+                        <p>Nuestra institución se ha destacado por implementar modelos pedagógicos innovadores que fomentan el pensamiento crítico, la creatividad y el respeto por la diversidad.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========== VISIÓN Y MISIÓN ========== -->
+        <section class="conocenos vision-mision" aria-labelledby="titulo-vision-mision">
+            <h2 id="titulo-vision-mision" class="sr-only">Visión y Misión</h2>
+            
+            <div class="conocenos2">
+                <!-- Visión -->
+                <article class="c1">
+                    <div class="text-content">
+                        <h2>Visión</h2>
+                        <p>Ser reconocidos como líderes en educación en Derechos Humanos, formando ciudadanos globales comprometidos con la justicia social, la paz y el desarrollo sostenible. Aspiramos a ser un referente nacional en educación integral que combine excelencia académica con formación en valores, utilizando pedagogías innovadoras y tecnologías educativas de vanguardia.</p>
+                    </div>
+                </article>
+
+                <!-- Misión -->
+                <article class="c1">
+                    <div class="text-content">
+                        <h2>Misión</h2>
+                        <p>El Colegio CEDHU tiene como misión proporcionar una educación integral basada en los Derechos Humanos, que desarrolle las potencialidades de cada estudiante. Fomentamos el pensamiento crítico, la creatividad, la responsabilidad social y el respeto por la diversidad. Nuestro equipo docente altamente calificado se compromete con una educación personalizada que prepara a los estudiantes para los desafíos del siglo XXI.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========== NUESTRO EQUIPO ========== -->
+        <section class="equipo-nuevo" aria-labelledby="titulo-equipo">
+            <div class="container">
+                <h2 id="titulo-equipo" class="sr-only">Nuestro Equipo</h2>
+
+                <!-- Equipo Directivo -->
+                <div class="equipo-categoria">
+                    <h2>Equipo Directivo</h2>
+                    <div class="tarjetas-equipo">
+                        <article class="tarjeta">
+                            <h3>Dr. Dimas Andrés Pulido Díaz</h3>
+                            <div class="especialidad">Rector</div>
+                            <ul class="credenciales">
+                                <li>Doctor en Educación</li>
+                                <li>Especialista en pedagogía de los Derechos Humanos</li>
+                                <li>Magíster en Gestión Educativa</li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h3>Nombre Vicerrector</h3>
+                            <div class="especialidad">Vicerrector Académico</div>
+                            <ul class="credenciales">
+                                <li>Magíster en Educación</li>
+                                <li>Especialista en Gestión Educativa</li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h3>Nombre Secretario</h3>
+                            <div class="especialidad">Secretario General</div>
+                            <ul class="credenciales">
+                                <li>Licenciado en Administración</li>
+                                <li>Especialista en Gestión Documental</li>
+                            </ul>
+                        </article>
+                    </div>
                 </div>
-                <div class="tarjeta">
-                    <h3>Nombre Vicerrector</h3>
-                    <div class="especialidad">Vicerrector Académico</div>
-                    <p>Magister en Educación</p>
-                    <p>Especialista en Gestión Educativa</p>
-                </div>
-                <div class="tarjeta">
-                    <h3>Nombre Secretario</h3>
-                    <div class="especialidad">Secretario General</div>
-                    <p>Licenciado en Administración</p>
-                    <p>Especialista en Gestión Documental</p>
+
+                <!-- Coordinadores -->
+                <div class="equipo-categoria">
+                    <h2>Coordinadores</h2>
+                    <div class="tarjetas-equipo">
+                        <article class="tarjeta">
+                            <h3>Milena Rodríguez Salamanca</h3>
+                            <div class="especialidad">Coordinadora Académica</div>
+                            <ul class="credenciales">
+                                <li>Licenciada en Educación</li>
+                                <li>Magíster en Currículo y Evaluación</li>
+                                <li>Especialista en Educación Inclusiva</li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h3>Nombre Coordinador</h3>
+                            <div class="especialidad">Coordinador de Convivencia</div>
+                            <ul class="credenciales">
+                                <li>Psicólogo Educativo</li>
+                                <li>Especialista en Resolución de Conflictos</li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h3>Nombre Coordinador</h3>
+                            <div class="especialidad">Coordinador de Convivencia</div>
+                            <ul class="credenciales">
+                                <li>Psicólogo Educativo</li>
+                                <li>Especialista en Resolución de Conflictos</li>
+                            </ul>
+                        </article>
+
+                        <article class="tarjeta">
+                            <h3>Nombre Coordinador</h3>
+                            <div class="especialidad">Coordinador de Convivencia</div>
+                            <ul class="credenciales">
+                                <li>Psicólogo Educativo</li>
+                                <li>Especialista en Resolución de Conflictos</li>
+                            </ul>
+                        </article>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Coordinadores -->
-        <div class="equipo-categoria">
-            <h2>Coordinadores</h2>
-            <div class="tarjetas-equipo">
-                <div class="tarjeta">
-                    <h3>Milena Rodríguez Salamanca</h3>
-                    <div class="especialidad">Coordinadora Académica</div>
-                    <p>Licenciada en Educación</p>
-                    <p>Magister en Currículo y Evaluación</p>
-                    <p>Especialista en Educación Inclusiva</p>
+        <!-- ========== VIDA ESTUDIANTIL ========== -->
+        <section class="seccion-trabajo" aria-labelledby="titulo-vida-estudiantil">
+            
+            <div class="galeria-trabajo" role="img" aria-label="Galería de actividades estudiantiles">
+                {% for imagen in imagenes_galeria %}
+                <figure class="item-trabajo">
+                    <img src="{{ imagen.imagen.url }}" 
+                         alt="{{ imagen.titulo|default:'Actividades CEDHU' }}"
+                         class="imagen-trabajo"
+                         loading="lazy">
+                    {% if imagen.titulo %}
+                    <figcaption class="titulo-imagen">
+                        <p>{{ imagen.titulo }}</p>
+                    </figcaption>
+                    {% endif %}
+                </figure>
+                {% empty %}
+                <div class="mensaje-vacio">
+                    <p>Próximamente más imágenes de nuestras actividades.</p>
                 </div>
-                <div class="tarjeta">
-                    <h3>Nombre Coordinador</h3>
-                    <div class="especialidad">Coordinador de Convivencia</div>
-                    <p>Psicólogo Educativo</p>
-                    <p>Especialista en Resolución de Conflictos</p>
-                </div>
-                <div class="tarjeta">
-                    <h3>Nombre Coordinador</h3>
-                    <div class="especialidad">Coordinador de Convivencia</div>
-                    <p>Psicólogo Educativo</p>
-                    <p>Especialista en Resolución de Conflictos</p>
-                </div>
-                <div class="tarjeta">
-                    <h3>Nombre Coordinador</h3>
-                    <div class="especialidad">Coordinador de Convivencia</div>
-                    <p>Psicólogo Educativo</p>
-                    <p>Especialista en Resolución de Conflictos</p>
-                </div>
+                {% endfor %}
             </div>
-        </div>
-    </div>
-</section>  
+        </section>
 
-    <!-- Galería Nuestro Trabajo -->
-    <section class="seccion-trabajo">
-        <div class="encabezado-trabajo">
-            <h2 class="titulo-trabajo">Vida Estudiantil</h2>
-            <p class="descripcion-trabajo">Conoce nuestro día a día y las actividades que realizamos en el Colegio CEDHU.</p>
-        </div>
-        
-        <div class="galeria-trabajo">
-            {% for imagen in imagenes_galeria %}
-            <div class="item-trabajo">
-                <img src="{{ imagen.imagen.url }}" 
-                    alt="{{ imagen.titulo|default:'Actividades CEDHU' }}"
-                    class="imagen-trabajo">
-                {% if imagen.titulo %}
-                <div class="titulo-imagen">
-                    <p>{{ imagen.titulo }}</p>
-                </div>
-                {% endif %}
-            </div>
-            {% empty %}
-            <div class="mensaje-vacio">
-                <p>Próximamente más imágenes de nuestras actividades.</p>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
+        <!-- ========== UBICACIÓN ========== -->
+        <section class="f-mapa" aria-labelledby="titulo-ubicacion">
+            <h2 id="titulo-ubicacion">¿Dónde nos ubicamos?</h2>
+            <iframe class="mapa" 
+                    src="https://maps.google.com/maps?q=5%C2%B043%2706.1%22N+72%C2%B055%2726.7%22W&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                    allowfullscreen 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación del Colegio CEDHU en Sogamoso, Boyacá"
+                    aria-label="Mapa de ubicación del Colegio CEDHU">
+            </iframe>
+        </section>
+    </main>
 
-    <!--Mapa-->
-    <section class="f-mapa">
-        <h2>¿Dónde nos ubicamos?</h2>
-        <iframe class="mapa" src="https://maps.google.com/maps?q=5%C2%B043%2706.1%22N+72%C2%B055%2726.7%22W&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </section>
-
-    <!--Pie de pagina-->
-    <footer>
+    <!-- ========== FOOTER ========== -->
+    <footer role="contentinfo">
         <div class="footer-container">
-            <!-- Información de contacto -->
-            <div class="footer-section">
+            <!-- Información de Contacto -->
+            <section class="footer-section">
                 <h3>Colegio CEDHU</h3>
-                <div class="contact-info">
+                <address class="contact-info">
                     <div class="contact-item">
-                        <i class="material-icons">location_on</i>
+                        <i class="material-icons" aria-hidden="true">location_on</i>
                         <p>Cl. 16 #915, Sogamoso, Boyacá</p>
                     </div>
                     <div class="contact-item">
-                        <i class="material-icons">phone</i>
-                        <p>+57 310 6890146</p>
+                        <i class="material-icons" aria-hidden="true">phone</i>
+                        <p><a href="tel:+573106890146">+57 310 6890146</a></p>
                     </div>
                     <div class="contact-item">
-                        <i class="material-icons">email</i>
-                        <p>colegiocedhu@gmail.com</p>
+                        <i class="material-icons" aria-hidden="true">email</i>
+                        <p><a href="mailto:colegiocedhu@gmail.com">colegiocedhu@gmail.com</a></p>
                     </div>
                     <div class="contact-item">
-                        <i class="material-icons">school</i>
+                        <i class="material-icons" aria-hidden="true">school</i>
                         <p>Institución Educativa</p>
                     </div>
-                </div>
-            </div>
+                </address>
+            </section>
             
-            <!-- Horario de atención -->
-            <div class="footer-section">
+            <!-- Horario de Atención -->
+            <section class="footer-section">
                 <h3>Horario Institucional</h3>
                 <div class="schedule">
-                    <p>Lunes a Viernes: 7:00 AM - 4:00 PM</p>
-                    <p>Jornada Académica: 7:00 AM - 5:00 PM</p>
+                    <p><strong>Lunes a Viernes:</strong> 7:00 AM - 4:00 PM</p>
+                    <p><strong>Jornada Académica:</strong> 7:00 AM - 5:00 PM</p>
                 </div>
-            </div>
+            </section>
             
-            <!-- Enlaces rápidos -->
-            <div class="footer-section">
+            <!-- Enlaces Rápidos -->
+            <section class="footer-section">
                 <h3>Enlaces rápidos</h3>
-                <div class="quick-links">
+                <nav class="quick-links" aria-label="Enlaces rápidos del footer">
                     <a href="{% url 'index' %}">Inicio</a>
                     <a href="#conocenos">Conócenos</a>
                     <a href="{% url 'servicios' %}">Programas</a>
                     <a href="{% url 'agendar' %}">Admisiones</a>
                     <a href="{% url 'login' %}">Plataforma Virtual</a>
-                </div>
-            </div>
+                </nav>
+            </section>
         </div>
         
-        <!-- Derechos de autor -->
+        <!-- Derechos de Autor -->
         <div class="copyright">
             <p>&copy; 2025 Colegio CEDHU. Todos los derechos reservados.</p>
             <p>Institución Educativa reconocida por la Secretaría de Educación</p>
         </div>
     </footer>
 
+    <!-- ========== SCRIPTS ========== -->
+    <!-- Scripts Funcionales -->
     <script src="{% static 'JavaScript/MenuHamburguesa.js' %}"></script>
+    <script src="{% static 'JavaScript/js-BotonTipSemana.js' %}"></script>
+    <script src="{% static 'JavaScript/js-BotonWhatsapp.js' %}"></script>
+    <script src="{% static 'JavaScript/js-botonAyuda.js' %}"></script>
+    <script src="{% static 'JavaScript/custom.js' %}"></script>
     
     <!-- Widget de Accesibilidad -->
     <script>
@@ -255,12 +329,6 @@
             menuTextColor: '#333333'
         };
     </script>
-
-    <!-- Scripts adicionales -->
-    <script src="{% static 'JavaScript/js-BotonTipSemana.js' %}"></script>
-    <script src="{% static 'JavaScript/js-BotonWhatsapp.js' %}"></script>
-    <script src="{% static 'JavaScript/js-botonAyuda.js' %}"></script>
     <script src="{% static 'JavaScript/sienna.js' %}"></script>
-    <script src="{% static 'JavaScript/custom.js' %}"></script>
 </body>
 </html>

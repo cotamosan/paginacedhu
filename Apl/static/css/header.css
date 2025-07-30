@@ -1,259 +1,308 @@
-/* ======================
-   HEADER STYLES
-   ====================== */
-
-/* Base Styles */
+/* Reset y variables CSS */
 :root {
-  --primary-gradient: linear-gradient(135deg, #22d3ee, #1e40af);
-  --secondary-gradient: linear-gradient(135deg, #d7dae0, #0891b2);
-  --text-light: #ffffff;
-  --text-dark: #333333;
-  --hover-bg: rgba(255, 255, 255, 0.2);
-  --transition-speed: 0.3s;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --border-radius-sm: 5px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #333;
+  --white: #ffffff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
-  color: var(--text-dark);
+  box-sizing: border-box;
 }
 
-/* Header Container */
+/* Estilos del Header */
 header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--primary-gradient);
-  padding: 0.75rem 1.5rem;
-  box-shadow: var(--shadow-md);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: all var(--transition-speed) ease;
+  padding: 1rem 2rem;
+  height: 80px;
+  transition: var(--transition);
 }
 
-/* Logo Section */
+/* Logotipo */
 .Logotipo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.Logotipo a {
+  display: block;
+  line-height: 0;
 }
 
 .Logotipo img {
-  height: 3.5rem;
-  transition: transform var(--transition-speed) ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  height: 50px;
+  width: auto;
+  transition: var(--transition);
 }
 
 .Logotipo img:hover {
-  transform: scale(1.05) rotate(-2deg);
+  transform: scale(1.05);
 }
 
-.eslogan {
-  font-size: 0.875rem;
-  color: var(--text-light);
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.5px;
-}
-
-/* Navigation */
-nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-nav a {
-  color: var(--text-light);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-sm);
-  transition: all var(--transition-speed) ease;
-  position: relative;
-  font-size: 1rem;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background-color: var(--text-light);
-  transition: width var(--transition-speed) ease;
-}
-
-nav a:hover {
-  background-color: var(--hover-bg);
-  transform: translateY(-2px);
-}
-
-nav a:hover::after {
-  width: 70%;
-}
-
-/* Profile Image */
-.perfil {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  transition: all var(--transition-speed) ease;
-  object-fit: cover;
-}
-
-.perfil:hover {
-  transform: scale(1.1);
-  border-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Mobile Menu Toggle */
-.menu-toggle {
+/* Menú hamburguesa */
+.abrir {
   display: none;
   background: none;
   border: none;
-  font-size: 1.75rem;
-  color: var(--text-light);
+  font-size: 1.8rem;
+  color: var(--primary-color);
   cursor: pointer;
   padding: 0.5rem;
-  transition: transform var(--transition-speed) ease;
-  z-index: 1100;
+  border-radius: 4px;
+  transition: var(--transition);
 }
 
-.menu-toggle:hover {
-  transform: scale(1.1);
+.abrir:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
 }
 
-/* Mobile Menu */
+/* Navegación */
 .opciones {
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 2rem;
 }
 
-/* Error Message Styling */
-.error-message {
-  color: #e53e3e;
-  background-color: #fed7d7;
-  padding: 0.5rem;
-  border-radius: var(--border-radius-sm);
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
+.cerrar {
   display: none;
-  animation: fadeIn 0.3s ease-out;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--white);
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.opciones a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ======================
-   RESPONSIVE DESIGN
-   ====================== */
+.opciones a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
+  transition: var(--transition);
+}
 
-@media screen and (max-width: 768px) {
+.opciones a:hover::before {
+  left: 100%;
+}
+
+.opciones a:hover {
+  color: var(--secondary-color);
+  background-color: rgba(52, 152, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Imagen de perfil */
+.perfil {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.opciones a:hover .perfil {
+  border-color: var(--secondary-color);
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) {
   header {
-    padding: 0.5rem 1rem;
+      padding: 1rem 1.5rem;
   }
-
-  .menu-toggle {
-    display: block;
-  }
-
+  
   .opciones {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    background: var(--secondary-gradient);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    z-index: 1000;
-    padding: 2rem;
-    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      gap: 1.5rem;
   }
-
-  .opciones.activo {
-    right: 0;
-  }
-
+  
   .opciones a {
-    font-size: 1.1rem;
-    padding: 0.75rem 1.5rem;
-    width: 100%;
-    text-align: center;
-    border-radius: var(--border-radius-md);
-    background-color: rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
   }
+}
 
+/* Responsive Design - Mobile */
+@media (max-width: 768px) {
+  .abrir {
+      display: block;
+  }
+  
+  .opciones {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transition: var(--transition);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .opciones.active {
+      right: 0;
+  }
+  
+  .cerrar {
+      display: block;
+  }
+  
+  .opciones a {
+      color: var(--white);
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      width: 80%;
+      text-align: center;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+  }
+  
   .opciones a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--white);
+      color: var(--white);
+      transform: scale(1.05);
   }
-
-  .Logotipo img {
-    height: 2.75rem;
-  }
-
-  .eslogan {
-    font-size: 0.75rem;
-  }
-
+  
   .perfil {
-    margin-left: auto;
-    margin-right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-color: var(--white);
+  }
+  
+  /* Ajustes para el logotipo en móvil */
+  .Logotipo img {
+      height: 45px;
+  }
+  
+  header {
+      padding: 1rem;
+      height: 70px;
   }
 }
 
 @media (max-width: 480px) {
-  header {
-    padding: 0.5rem;
-  }
-
-  .Logotipo img {
-    height: 2.5rem;
-  }
-
   .opciones {
-    width: 85%;
+      width: 100%;
+      right: -100%;
   }
-
+  
   .opciones a {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+      width: 90%;
+      font-size: 1rem;
+  }
+  
+  .Logotipo img {
+      height: 40px;
+  }
+  
+  header {
+      height: 65px;
   }
 }
 
-/* Animation for mobile menu overlay */
-body.menu-open::before {
-  content: '';
+/* Animaciones adicionales */
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateX(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.opciones.active a {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.opciones.active a:nth-child(2) { animation-delay: 0.1s; }
+.opciones.active a:nth-child(3) { animation-delay: 0.2s; }
+.opciones.active a:nth-child(4) { animation-delay: 0.3s; }
+.opciones.active a:nth-child(5) { animation-delay: 0.4s; }
+.opciones.active a:nth-child(6) { animation-delay: 0.5s; }
+
+/* Efecto de scroll para el header */
+header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  height: 70px;
+}
+
+header.scrolled .Logotipo img {
+  height: 45px;
+}
+
+/* Overlay para el menú móvil */
+.menu-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  animation: fadeIn 0.3s ease-out;
+  display: none;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Ajustes para el contenido principal */
+body {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+      padding-top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+      padding-top: 65px;
+  }
 }
