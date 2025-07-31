@@ -672,8 +672,8 @@ footer {
 }
 
 .plataformas-header a img {
-    width: 100%;
-    height: auto;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
     transition: transform 0.3s ease;
     border-radius: 10px;
