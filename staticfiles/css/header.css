@@ -1,0 +1,308 @@
+/* Reset y variables CSS */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #333;
+  --white: #ffffff;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos del Header */
+header {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  height: 80px;
+  transition: var(--transition);
+}
+
+/* Logotipo */
+.Logotipo {
+  flex-shrink: 0;
+}
+
+.Logotipo a {
+  display: block;
+  line-height: 0;
+}
+
+.Logotipo img {
+  height: 50px;
+  width: auto;
+  transition: var(--transition);
+}
+
+.Logotipo img:hover {
+  transform: scale(1.05);
+}
+
+/* Menú hamburguesa */
+.abrir {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.abrir:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
+/* Navegación */
+.opciones {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cerrar {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--white);
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem;
+}
+
+.opciones a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.opciones a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.3), transparent);
+  transition: var(--transition);
+}
+
+.opciones a:hover::before {
+  left: 100%;
+}
+
+.opciones a:hover {
+  color: var(--secondary-color);
+  background-color: rgba(52, 152, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Imagen de perfil */
+.perfil {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.opciones a:hover .perfil {
+  border-color: var(--secondary-color);
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) {
+  header {
+      padding: 1rem 1.5rem;
+  }
+  
+  .opciones {
+      gap: 1.5rem;
+  }
+  
+  .opciones a {
+      font-size: 0.9rem;
+      padding: 0.6rem 1rem;
+  }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 768px) {
+  .abrir {
+      display: block;
+  }
+  
+  .opciones {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      transition: var(--transition);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .opciones.active {
+      right: 0;
+  }
+  
+  .cerrar {
+      display: block;
+  }
+  
+  .opciones a {
+      color: var(--white);
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      width: 80%;
+      text-align: center;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+  }
+  
+  .opciones a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--white);
+      color: var(--white);
+      transform: scale(1.05);
+  }
+  
+  .perfil {
+      width: 40px;
+      height: 40px;
+      border-color: var(--white);
+  }
+  
+  /* Ajustes para el logotipo en móvil */
+  .Logotipo img {
+      height: 45px;
+  }
+  
+  header {
+      padding: 1rem;
+      height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .opciones {
+      width: 100%;
+      right: -100%;
+  }
+  
+  .opciones a {
+      width: 90%;
+      font-size: 1rem;
+  }
+  
+  .Logotipo img {
+      height: 40px;
+  }
+  
+  header {
+      height: 65px;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes slideIn {
+  from {
+      opacity: 0;
+      transform: translateX(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+.opciones.active a {
+  animation: slideIn 0.5s ease forwards;
+}
+
+.opciones.active a:nth-child(2) { animation-delay: 0.1s; }
+.opciones.active a:nth-child(3) { animation-delay: 0.2s; }
+.opciones.active a:nth-child(4) { animation-delay: 0.3s; }
+.opciones.active a:nth-child(5) { animation-delay: 0.4s; }
+.opciones.active a:nth-child(6) { animation-delay: 0.5s; }
+
+/* Efecto de scroll para el header */
+header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  height: 70px;
+}
+
+header.scrolled .Logotipo img {
+  height: 45px;
+}
+
+/* Overlay para el menú móvil */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Ajustes para el contenido principal */
+body {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+      padding-top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+      padding-top: 65px;
+  }
+}

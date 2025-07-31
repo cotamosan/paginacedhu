@@ -2,67 +2,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Programas educativos del Colegio CEDHU - Preescolar, Básica Primaria, Básica Secundaria y Media. Educación integral basada en Derechos Humanos.">
     <meta name="keywords" content="programas educativos, preescolar, básica primaria, secundaria, media, CEDHU, derechos humanos">
     <meta name="author" content="Colegio CEDHU">
-    
-    <!-- Title y Favicon -->
     <title>Programas Educativos - Colegio CEDHU</title>
     <link rel="icon" href="{% static 'Images/logocedhu.avif' %}" type="image/avif">
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/2. Servicios.css' %}">
-    
-    <!-- JavaScript Variables -->
     <script>
         const STATIC_URL = "{% static '' %}";
     </script>
 </head>
 
 <body>
-    <!-- ========== HEADER ========== -->
-    <header role="banner">
-        <!-- Logo Principal -->
-        <div class="Logotipo">
-            <a href="{% url 'index' %}" aria-label="Ir al inicio - Colegio CEDHU">
-                <img src="{% static 'Images/logocedhu.avif' %}" 
-                     alt="Logotipo de CEDHU - Educación en Derechos Humanos"
-                     width="200" height="60">
-            </a>
-        </div>
+    <header>
+    <!-- Logo de encabezado -->
+    <div class="Logotipo">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'Images/logocedhu.avif' %}" alt="Logotipo de CEDHU - Educación en Derechos Humanos">
+        </a>
+    </div>
 
-        <!-- Menú Hamburguesa -->
-        <button class="abrir" id="abrir-menu" aria-label="Abrir menú de navegación">
-            ☰
-        </button>
-        
-        <!-- Navegación Principal -->
-        <nav class="opciones" id="menu" role="navigation" aria-label="Menú principal">
-            <button class="cerrar" id="cerrar-menu" aria-label="Cerrar menú">
-                ✕
-            </button>
-            
-            <a href="{% url 'index' %}">INICIO</a>
-            <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
-            <a href="{% url 'servicios' %}" aria-current="page">PROGRAMAS</a>
-            <a href="{% url 'agendar' %}">ADMISIONES</a>
-            <a href="{% url 'login' %}" aria-label="Acceder a la plataforma virtual">
-                <img class="perfil" 
-                     src="{% static 'Images/perfil.png' %}" 
-                     alt="Acceso Plataforma"
-                     width="35" height="35">
-            </a>
-        </nav>
-    </header>
+    <!-- NUEVA SECCIÓN DE PLATAFORMAS (4 íconos) -->
+    <div class="plataformas-header">
+    <a href="https://site2.q10.com/login?ReturnUrl=%2F&aplentId=04dd32ac-1f6a-46d0-b388-df88d12b739d" target="_blank">
+        <img src="{% static 'Images/Q10.avif' %}" alt="Acceso Q 10">
+    </a>
+    <a href="https://lms30.santillanacompartir.com/login/sso/oauth/loginconnect" target="_blank">
+        <img src="{% static 'Images/santillana.avif' %}" alt="Acceso Santillana">
+    </a>
+    <a href="https://www.instruimos.com/Instruimos_Plataforma/index.htm" target="_blank">
+        <img src="{% static 'Images/instruimos.avif' %}" alt="Acceso Instruimos">
+    </a>
+    <a href="https://identity.edicionesnorma.com/login/?client_id=neds_client_norma_colombia_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dneds_client_norma_colombia_pro%26scope%3Dopenid%2Bprofile%2Bemail%2Brole%2Bexternal.info%2Bneds%252Ffull_access%26state%3Ddcqpork5ToqFy0Q6z3d0CJC1kSfBdtHGa485o4m3T9k%253D%26redirect_uri%3Dhttps%253A%252F%252Fedu-norma-co.stn-neds.com%252Fts%252Flogin%252Foauth2%252Fcode%252Fnormaco%26code_challenge_method%3DS256%26nonce%3DP3WGHqTSVGauzaZbER2li8pmQbr2YsBHN2CYoDnOmRI%26code_challenge%3DXuGRxWqytIfWLsnS6jmrdTGyq1WnjfPhdrpb8xCBXnM" target="_blank">
+        <img src="{% static 'Images/norma.avif' %}" alt="Acceso Norma">
+    </a>
+</div>
+
+
+    <!-- Menú hamburguesa responsivo -->
+    <button class="abrir" id="abrir-menu">☰</button>
+
+    <!-- Opciones de encabezado -->
+    <nav class="opciones" id="menu">
+        <button class="cerrar" id="cerrar-menu">✕</button>
+        <a href="{% url 'index' %}">INICIO</a>
+        <a href="{% url 'index' %}#conocenos">CONÓCENOS</a>
+        <a href="{% url 'servicios' %}">PROGRAMAS</a>
+        <a href="{% url 'agendar' %}">ADMISIONES</a>
+        <a href="{% url 'login' %}">
+            <img class="perfil" src="{% static 'Images/perfil.png' %}" alt="Acceso Plataforma">
+        </a>
+    </nav>
+</header>
 
     <!-- ========== MAIN CONTENT ========== -->
     <main>
